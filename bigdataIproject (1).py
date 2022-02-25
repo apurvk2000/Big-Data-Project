@@ -43,6 +43,11 @@ random_state = 809
 X_train, X_test, y_train, y_test = train_test_split(df.drop(['loan_status'], axis=1),
                                                     df['loan_status'], test_size=0.3,
                                                     random_state=random_state)
+
+oversample = SMOTE()
+oversampled_X_train, oversampled_y_train = oversample.fit_resample(X_train, y_train)
+
+
 rfc = RandomForestClassifier(random_state=random_state)
 rfc.fit(X_train, y_train)
 time_end = time.time()
